@@ -22,9 +22,9 @@ from rest_framework.settings import api_settings
 # Users authentication and registration
 
 class AuthenticatedUserData(APIView):
-
+    
     permission_classes = [IsAuthenticated]
-
+    
     def get(self, request, id):
         try:
             user = CustomUser.objects.get(id=id)
@@ -35,7 +35,6 @@ class AuthenticatedUserData(APIView):
             'id': user.id,
             'nom': user.nom,
             'prenom': user.prenom,
-            'post': user.post,
             'phone': user.phone,
             'nni': user.nni,
 
