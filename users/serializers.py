@@ -10,10 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = "__all__"
-# class AdminSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Adminstrator
-#         fields = "__all__"
         
         
 class BankLoans(serializers.ModelSerializer):
@@ -28,18 +24,10 @@ class ClientRegisterSerializer(serializers.ModelSerializer):
         required = True
     )
     
-    # profile_image = serializers.ImageField(
-    #     required = True
-    # )
     
     prenom = serializers.CharField(
         required = True
     )
-    
-    
-    # post = serializers.CharField(
-    #     required = True
-    # )
         
     nni = serializers.CharField(
         required = True,
@@ -109,9 +97,6 @@ class ClientRegisterSerializer(serializers.ModelSerializer):
             nni= validated_data["nni"],
             nom= validated_data["nom"],
             prenom= validated_data["prenom"],
-            # post= validated_data["post"],
-            # profile_image= validated_data["profile_image"],
-
         )
         user.set_password(
             validated_data["password"]
