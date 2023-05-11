@@ -6,13 +6,14 @@ from rest_framework.response import Response
 from users.models import  CustomUser
 from users.serializers import BankLoans
 from .models import Bank, Loan
-from .serializers import BankSerializer, LoanSerializer
+from .serializers import BankSerializer, LoanSerializer, LoanCrudSerializer
 from rest_framework import generics, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 
 # This is gr8
 class CreateLoanView(generics.CreateAPIView):
@@ -73,7 +74,6 @@ class LoanListView(generics.ListAPIView):
         "loan_status": query.loan_status,
         "client": query.client.id,
         "bank": query.bank.nom,
-        # "bank_nom":
         },status=200)
     
 class LoanView(APIView):
@@ -85,8 +85,6 @@ class LoanView(APIView):
             return Response(serializer.data, status=200)
         else:
             return Response({"error": "No loans found for the banks."}, status=400)
-
-
 @api_view(['GET'])
 def getBanks(request):
     if request.method == 'GET':
@@ -95,3 +93,10 @@ def getBanks(request):
         return Response(
             serializer.data
         ,status=200)
+    
+
+
+
+class loansCrud(RetrieveUpdateDestroyAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanCrudSerializer
