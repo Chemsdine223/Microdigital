@@ -9,7 +9,7 @@ from django.contrib.auth.password_validation import validate_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = "__all__"
+        fields = ['nom']
         
         
 class BankLoans(serializers.ModelSerializer):
