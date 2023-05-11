@@ -6,7 +6,6 @@ from django.conf import settings
 
 class Bank(models.Model):
     nom = models.CharField(max_length=50)
-    admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     
     def __str__(self):
         return str(self.nom)
@@ -30,8 +29,6 @@ class Loan(models.Model):
     )
     loan_status = models.CharField(max_length=32, choices=choices, default='Pending')
 
-    
-    
     def __str__(self):
         return str(self.client.nom)
     

@@ -19,8 +19,6 @@ from rest_framework.settings import api_settings
 
 # Create your views here.
 
-# Users authentication and registration
-
 class AuthenticatedUserData(APIView):
     
     permission_classes = [IsAuthenticated]
@@ -40,6 +38,9 @@ class AuthenticatedUserData(APIView):
 
         }
         return Response(user_data)
+
+
+#====================== Admins authentication: =========================#
 
 class ClientLoginView(ObtainAuthToken):
     def post(self, request):
@@ -77,20 +78,16 @@ class ClientRegisterView(generics.CreateAPIView):
         return Response(status= Response.status_code)
 
 
-# Admins authentication:
+#====================== Admins authentication: =========================#
 
 class AdminLoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
-        
         phone = request.data['phone']
         password = request.data['password']
         admin = CustomUser.objects.filter(phone=phone).first()
-        # if admin.role is not 'Manager':
-        #     raise AuthenticationFailed('Authentication failed')
         if admin.role == 'Manager':
             if admin.check_password(password):
-                
-                
+
                 refresh = RefreshToken.for_user(admin)
                 return Response({
                     'id':admin.id,
@@ -99,7 +96,8 @@ class AdminLoginView(ObtainAuthToken):
                     'telephone':admin.phone,
                     'nni':admin.nni,
                     'refresh':str(refresh),
-                    'access':str(refresh.access_token)
+                    'access':str(refresh.access_token), 
+                    'bank_id':admin.bank_id.id,
                 },status=Response.status_code)
             else:
                 return Response({

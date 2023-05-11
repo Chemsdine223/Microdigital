@@ -8,5 +8,4 @@ urlpatterns = [
     path('login/', ClientLoginView.as_view(), name='login-client'),
     path('loginAdmin/', AdminLoginView.as_view(), name='login-admin'),
     path('getuser/<int:id>/', AuthenticatedUserData.as_view(), name='user-data'),
-    # path('test/', Test.as_view(), name='user-data'),
 ]
