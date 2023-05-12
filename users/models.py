@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from transactions.models import Bank
+from django.contrib.auth.hashers import make_password
+
 
 
 class AccountManager(BaseUserManager):
     def create_user(self, prenom, nom, nni, phone, password=None):
         account = self.model(prenom=prenom, nom=nom, nni=nni, phone=phone)
-
         account.set_password(password)
         account.save(using=self._db)
-
         return account 
 
     def create_superuser(self, prenom, nom, nni, phone, password):
@@ -19,6 +19,7 @@ class AccountManager(BaseUserManager):
 
         user.save(using=self._db)
         return user
+    
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -41,6 +42,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ["nni", "prenom", "nom"]
 
+    def save(self, *args, **kwargs):
+        if self.password:
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
+    
     def __str__(self):
         return str(self.prenom)
-    

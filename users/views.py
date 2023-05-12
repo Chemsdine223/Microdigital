@@ -98,6 +98,7 @@ class AdminLoginView(ObtainAuthToken):
                     'refresh':str(refresh),
                     'access':str(refresh.access_token), 
                     'bank_id':admin.bank_id.id,
+                    'bank_name':admin.bank_id.nom
                 },status=Response.status_code)
             else:
                 return Response({
