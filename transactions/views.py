@@ -95,7 +95,10 @@ def getBanks(request):
         ,status=200)
     
 
-
+# this view perform all crud to the loans modele
+class loanList(ListCreateAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer
 
 class loansCrud(RetrieveUpdateDestroyAPIView):
     queryset = Loan.objects.all()
