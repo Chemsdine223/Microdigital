@@ -84,7 +84,7 @@ class AdminLoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         phone = request.data['phone']
         password = request.data['password']
-        admin = CustomUser.objects.filter(phone=phone).first()
+        admin = CustomUser.objects.get(phone=phone)
         if admin.role == 'Manager':
             if admin.check_password(password):
 
