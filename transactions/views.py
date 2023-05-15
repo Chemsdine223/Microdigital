@@ -6,19 +6,20 @@ from rest_framework.response import Response
 from users.models import  CustomUser
 from users.serializers import BankLoans
 from .models import Bank, Loan
-from .serializers import BankSerializer, LoanSerializer
+from .serializers import BankSerializer, LoanSerializer, LoanCrudSerializer
 from rest_framework import generics, permissions
 # from rest_framework.authtoken.views import ObtainAuthToken
 # from rest_framework.exceptions import AuthenticationFailed
 # from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 
 # This is gr8
 
 class CreateLoanView(generics.CreateAPIView):
     queryset = Loan.objects.all()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         
         user_loans = Loan.objects.filter(client=request.data['client'])
@@ -68,20 +69,17 @@ class LoanListView(generics.ListAPIView):
         "loan_status": query.loan_status,
         "client": query.client.id,
         "bank": query.bank.nom,
-        # "bank_nom":
         },status=200)
     
 class LoanView(APIView):
     def get(self,request,id):
-        user = CustomUser.objects.get(id=id)
-        query = Loan.objects.filter(client=user.id).first()
+        bank = Bank.objects.get(id=id)
+        query = Loan.objects.filter(bank=bank.id)
         if query:
-            serializer = LoanSerializer(query)
+            serializer = LoanSerializer(query, many=True)
             return Response(serializer.data, status=200)
         else:
-            return Response({"error": "No loan found for the user."}, status=400)
-
-
+            return Response({"error": "No loans found for the banks."}, status=400)
 @api_view(['GET'])
 def getBanks(request):
     if request.method == 'GET':
@@ -90,3 +88,13 @@ def getBanks(request):
         return Response(
             serializer.data
         ,status=200)
+    
+
+# this view perform all crud to the loans modele
+class loanList(ListCreateAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer
+
+class loansCrud(RetrieveUpdateDestroyAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanCrudSerializer
