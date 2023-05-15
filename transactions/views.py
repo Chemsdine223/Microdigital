@@ -8,13 +8,14 @@ from users.serializers import BankLoans
 from .models import Bank, Loan
 from .serializers import BankSerializer, LoanSerializer
 from rest_framework import generics, permissions
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.exceptions import AuthenticationFailed
-from rest_framework_simplejwt.tokens import RefreshToken
+# from rest_framework.authtoken.views import ObtainAuthToken
+# from rest_framework.exceptions import AuthenticationFailed
+# from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
 # This is gr8
+
 class CreateLoanView(generics.CreateAPIView):
     queryset = Loan.objects.all()
     permission_classes = [IsAuthenticated]
@@ -45,13 +46,7 @@ class CreateLoanView(generics.CreateAPIView):
                 loan_end_date = loan_end_date,
                 repayment_method = repayment_method,
             )
-        
-        # Getting multiple loans at a time down there just in case it's needed 
-        
-        # loans = loan.objects.all()
-        # serializer_class = LoanSerializer(loans , many = True)
-        
-        
+
         return Response({
             'Loan created successfully !'
             }, status=200)

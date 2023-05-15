@@ -1,6 +1,8 @@
-from django.shortcuts import render
-
 # Create your views here.
+
+import requests
+import json
+
 from rest_framework import generics
 from rest_framework.views import APIView
 from django.contrib.auth import get_user_model
@@ -17,12 +19,42 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 
 
-# Create your views here.
+class PushNotificationView(APIView):
+    def post(self, request):
+        user_id = request.data.get('user_id')
+        message = request.data.get('message')
 
-class AuthenticatedUserData(APIView):
+        if not user_id or not message:
+            return Response({'error': 'Missing user_id or message'}, status=400)
+
+        headers = {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Authorization': 'Basic NzE5MTEyYzktMDFiNC00Mzg4LWE2MjktYTI4ZjYyODIwNzAy',
+        }
+        payload = {
+                    "app_id": "50c2523b-ad83-4410-8945-c16f92a18b50",
+                    "contents": {
+                        "en": message
+                    },
+                    "channel_for_external_user_ids": "push",
+                    "include_external_user_ids": [
+                        user_id
+                    ]
+                  }
+        response = requests.post('https://onesignal.com/api/v1/notifications', headers=headers, data=json.dumps(payload))
+
+        if response.status_code == 200:
+            return Response({'status': 'success'})
+        
+        else:
+            return Response({'error': response.json()}, status=500)
+
+
+
+
+class AuthenticatedUserData(APIView): 
     
     permission_classes = [IsAuthenticated]
-    
     def get(self, request, id):
         try:
             user = CustomUser.objects.get(id=id)
@@ -35,9 +67,11 @@ class AuthenticatedUserData(APIView):
             'prenom': user.prenom,
             'phone': user.phone,
             'nni': user.nni,
-
         }
         return Response(user_data)
+    
+    
+
 
 
 #====================== Admins authentication: =========================#
@@ -46,7 +80,7 @@ class ClientLoginView(ObtainAuthToken):
     def post(self, request):
         phone = request.data.get('phone')
         password = request.data.get('password')
-        client = CustomUser.objects.filter(phone=phone).first()
+        client = CustomUser.objects.get(phone=phone)
         if client is None:
             raise AuthenticationFailed('check password')
         if client.check_password(password):
@@ -64,7 +98,8 @@ class ClientLoginView(ObtainAuthToken):
             return Response({
                              'message':'Check your credentials'
                             }, status= 401)  
-
+        
+        
 class ClientRegisterView(generics.CreateAPIView):
     
     model = get_user_model()
@@ -85,7 +120,7 @@ class AdminLoginView(ObtainAuthToken):
         
         phone = request.data['phone']
         password = request.data['password']
-        admin = CustomUser.objects.filter(phone=phone).first()
+        admin = CustomUser.objects.get(phone=phone)
         if admin.role == 'Manager':
             if admin.check_password(password):
 
