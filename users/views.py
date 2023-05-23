@@ -69,10 +69,30 @@ class AuthenticatedUserData(APIView):
             'nni': user.nni,
         }
         return Response(user_data)
+
+class AuthenticatedUserDataa(APIView): 
+    
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        try:
+            # user = CustomUser.objects.get(id=id)
+            user = request.user
+        except CustomUser.DoesNotExist:
+            return Response(status=404)
+
+        user_data = {
+            'id': user.id,
+            'nom': user.nom,
+            'prenom': user.prenom,
+            'phone': user.phone,
+            'nni': user.nni,
+            'bank_id': user.bank_id.id,
+            'bank_name': user.bank_id.nom,
+            'telephone': user.phone
+        }
+        return Response(user_data)
     
     
-
-
 
 #====================== Admins authentication: =========================#
 
@@ -113,11 +133,10 @@ class ClientRegisterView(generics.CreateAPIView):
         return Response(status= Response.status_code)
 
 
-#====================== Admins authentication: =========================#
+# ====================== Admins authentication: & Bank Loans ========================= #
 
 class AdminLoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
-        
         phone = request.data['phone']
         password = request.data['password']
         admin = CustomUser.objects.get(phone=phone)
@@ -126,18 +145,20 @@ class AdminLoginView(ObtainAuthToken):
 
                 refresh = RefreshToken.for_user(admin)
                 return Response({
-                    'id':admin.id,
-                    'nom':admin.nom,
-                    'prenom':admin.prenom,
-                    'telephone':admin.phone,
-                    'nni':admin.nni,
-                    'refresh':str(refresh),
-                    'access':str(refresh.access_token)
-                },status=Response.status_code)
+                    'id': admin.id,
+                    'nom': admin.nom,
+                    'prenom': admin.prenom,
+                    'telephone': admin.phone,
+                    'nni': admin.nni,
+                    'refresh': str(refresh),
+                    'access': str(refresh.access_token),
+                    'bank_id': admin.bank_id.id,
+                    'bank_name': admin.bank_id.nom
+                }, status=Response.status_code)
             else:
                 return Response({
-                                'message':'Check your credentials'
-                                }, status= 401) 
+                                'message': 'Check your credentials'
+                                }, status=401)
         else:
             raise AuthenticationFailed('Get out !')
 

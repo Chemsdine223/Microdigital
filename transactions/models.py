@@ -28,6 +28,7 @@ class Loan(models.Model):
         ('Refused', 'Refused'),
     )
     loan_status = models.CharField(max_length=32, choices=choices, default='Pending')
+    
 
     def __str__(self):
         return str(self.client.nom)
