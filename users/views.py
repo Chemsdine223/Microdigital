@@ -12,7 +12,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
 from rest_framework.decorators import *
 
-from users.models import CustomUser
+from users.models import BankClient, CustomUser
 from users.serializers import ClientRegisterSerializer, ClientRegisterSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -97,10 +97,10 @@ class AuthenticatedUserDataa(APIView):
 #====================== Admins authentication: =========================#
 
 class ClientLoginView(ObtainAuthToken):
-    def post(self, request):
+    def post(self, request,*args, **kwargs):
         phone = request.data.get('phone')
         password = request.data.get('password')
-        client = CustomUser.objects.get(phone=phone)
+        client = BankClient.objects.get(phone=phone)
         if client is None:
             raise AuthenticationFailed('check password')
         if client.check_password(password):
@@ -111,12 +111,14 @@ class ClientLoginView(ObtainAuthToken):
                 'prenom':client.prenom,
                 'telephone':client.phone,
                 'nni':client.nni,
+                'balance':client.balance,
+                'account_number':client.account_number,
                 'refresh':str(refresh),
                 'access':str(refresh.access_token)
             },status=Response.status_code)
         else:
             return Response({
-                             'message':'Check your credentials'
+                             'message':'error'
                             }, status= 401)  
         
         

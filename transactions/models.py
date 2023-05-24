@@ -16,17 +16,25 @@ class Bank(models.Model):
 class Loan(models.Model):
     client = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank = True)
     bank = models.ForeignKey(Bank, on_delete=models.CASCADE, blank = True)
-    loan_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    interest_rate = models.DecimalField(max_digits=4, decimal_places=2)
+    account_number = models.IntegerField(blank=True, null=True, unique=True)
+    loan_amount = models.FloatField(max_length=255, default=0)
+    interest_rate = models.FloatField(max_length=255)
+    reduction_rate = models.FloatField(max_length=255)
     loan_start_date = models.DateField(default=datetime.now)
     loan_end_date = models.DateField()
+    paid_amount = models.FloatField(default= 0)
+    rest_to_pay = models.FloatField(default= 0,max_length=255, null=True)
+    monthly_withdrawn_amount = models.FloatField(default= 0,blank=True, max_length=255, null=True)
+    contract_type = models.CharField(blank=True, max_length=255, null=True)
     repayment_method = models.CharField(max_length=50)
+    
     choices = (
         ('Pending', 'Pending'),
         ('Success', 'Success'),
         ('Confirmed', 'Confirmed'),
         ('Refused', 'Refused'),
     )
+    
     loan_status = models.CharField(max_length=32, choices=choices, default='Pending')
     
 

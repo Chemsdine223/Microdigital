@@ -8,9 +8,6 @@ from users.serializers import BankLoans
 from .models import Bank, Loan
 from .serializers import BankSerializer, LoanSerializer, LoanCrudSerializer
 from rest_framework import generics, permissions
-# from rest_framework.authtoken.views import ObtainAuthToken
-# from rest_framework.exceptions import AuthenticationFailed
-# from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
@@ -98,3 +95,19 @@ class loanList(ListCreateAPIView):
 class loansCrud(RetrieveUpdateDestroyAPIView):
     queryset = Loan.objects.all()
     serializer_class = LoanCrudSerializer
+    
+    
+
+class ReduceLoanAmountView(APIView):
+    def post(self, request, format=None):
+        loans = Loan.objects.all()
+
+        for loan in loans:
+            interest_rate = loan.interest_rate
+            loan_amount = loan.loan_amount
+            reduced_amount = loan_amount * (1 - interest_rate)
+            loan.paid_amount += loan_amount - reduced_amount
+            loan.loan_amount = reduced_amount
+            loan.save()
+
+        return Response({"message": "Loan amounts reduced and paid amount updated successfully."})

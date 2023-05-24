@@ -4,3 +4,4 @@ from users.models import *
 
 admin.site.register(CustomUser)
 admin.site.register(responsable)
+admin.site.register(BankClient)

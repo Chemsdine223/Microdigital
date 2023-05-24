@@ -20,8 +20,6 @@ class AccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
     
-
-
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     ROLES = (
         ('Client', 'Client'),
@@ -46,3 +44,23 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return str(self.prenom)
 
+class responsable(CustomUser):
+    def save(self, *args, **kwargs):
+        if self.password:
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.prenom)
+
+class BankClient(CustomUser):
+    balance = models.FloatField(max_length=255, blank=True, null=True, default=0)
+    account_number = models.CharField(max_length=255, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.prenom)

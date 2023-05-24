@@ -16,6 +16,11 @@ class BankLoans(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields = "__all__"
+        
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Loan
+        fields = "__all__"
 
 
 class ClientRegisterSerializer(serializers.ModelSerializer):
