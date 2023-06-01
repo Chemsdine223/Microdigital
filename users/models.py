@@ -56,6 +56,7 @@ class responsable(CustomUser):
 class BankClient(CustomUser):
     balance = models.FloatField(max_length=255, blank=True, null=True, default=0)
     account_number = models.CharField(max_length=255, blank=True, null=True)
+    image =  models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:

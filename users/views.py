@@ -19,6 +19,33 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 
 
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework import status
+# from .models import YourModel
+class BankClientUpdateView(APIView):
+    def put(self, request, id):
+        try:
+            client = BankClient.objects.get(id=id)
+        except BankClient.DoesNotExist:
+            return Response({'message': 'BankClient not found.'}, status=400)
+
+        data = request.data
+
+        # Update the desired fields
+        # if 'name' in data:
+        #     client.name = data['name']
+
+        if 'image_url' in data:
+            client.image = data['image_url']
+
+        # Save the updated instance
+        client.save()
+
+        return Response({'message': 'BankClient updated successfully.'}, status=200)
+
+
+
 class PushNotificationView(APIView):
     def post(self, request):
         user_id = request.data.get('user_id')

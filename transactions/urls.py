@@ -10,5 +10,5 @@ urlpatterns = [
     path('getbanks/', getBanks, name='get_loan_by_bank'),
     path('loansCrud/<int:pk>', loansCrud.as_view(), name='crud loans'),
     path('loanList', loanList.as_view(), name='list view'),
-    path('loanReduction/', ReduceLoanAmountView.as_view(), name='list view')
+    path('loanReduction/å', ReduceLoanAmountView.as_view(), name='list view')
 ]

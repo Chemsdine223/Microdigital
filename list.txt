@@ -1,0 +1,70 @@
+Matricule:Genre:Prénom:Nom:Email:Groupe TD:Groupe TP:Groupe PEI
+19067:F:Aichetou:Mohamed :19067@gmail.mr:TD1:TP1:
+20024:F:Meyem:sidi:20024@gmail.mr:TD4:TP4:16
+20027:M:Souleiman Amadou:sar:20027@gmail.mr:TD2:TP2:5
+20048:M:Seydina Aly:Sidi salem:20048@gmail.mr:TD3:TP3:
+20070:M:Taghy:EL HAVEDH:20070@gmail.mr:TD1:TD1:
+20074:F:Fatimetou:EL KEBIR:20074@gmail.mr:TD4:TP4:16
+21004:M:Oussama:ABDEL WEHAB:21004@gmail.mr:TD2:TP2:7
+21005:M:Hamoud:ELY MOKHTAR:21005@gmail.mr:TD2:TP2:7
+21006:M:Tah:SIDI:21006@gmail.mr:TD2:TP2:7
+21007:M:Abdellahi:EL GHASSEM:21007@gmail.mr:TD2:TP2:5
+21009:M:Cheikh:KEBIR:21009@gmail.mr:TD3:TP3:12
+21010:M:Mohamed :SOW:21010@gmail.mr:TD1:TP1:3
+21011:M:Esseyidi:SIDI:21011@gmail.mr:TD2:TP2:6
+21013:M:Mohamed Lemin:MOKHTAR:21013@gmail.mr:TD4:TP4:14
+21014:M:Yahya:TALEB :21014@gmail.mr:TD3:TP3:11
+21015:M:Mohamed :ZEINE :21015@gmail.mr:TD4:TP4:15
+21016:M:Zeidan:BOUBACAR:21016@gmail.mr:TD2:TP2:8
+21017:F:Khadijetou: Ali:21017@gmail.mr:TD4:TP4:13
+21018:F:saydou: fall : 21018@gmail.mr:TD3:TP3:11
+21019:M:El Moustapha:SIDI ABDOULLAH:21019@gmail.mr:TD3:TP3:11
+21021:M:Mohamed El Moktar:MAMOUNE:21021@gmail.mr:TD3:TP3:10
+21022:M:Mohamedou:JEMAL:21022@gmail.mr:TD3:TP3:11
+21023:M:Mohamed Mahmoud:SIDI JAAVAR:21023@gmail.mr:TD1:TP1:1
+21024:M:Moktar:AHMED:21024@gmail.mr:TD1:TP1:2
+21025:M:Ahmed:AHMED:21025@gmail.mr:TD1:TP1:4
+21027:M:Brahim:MOUDI:21027@gmail.mr:TD3:TP3:10
+21028:M:Mohamed:BRAHIM:21028@gmail.mr:TD2:TP2:5
+21030:M:EL MEKY:EL HAMED:21030@gmail.mr:TD1:TP1:1
+21031:M:Sidaty:AHMED:21031@gmail.mr:TD1:TP1:2
+21032:F:Lale:YAHYA:21032@gmail.mr:TD2:TP2:5
+21034:M:Salem:ALI:21034@gmail.mr:TD4:TP4:13
+21035:M:Abdellahi:LEMRABOTT:21035@gmail.mr:TD3:TP3:10
+21037:F:Lalle:SALEM:21037@gmail.mr:TD2:TP2:8
+21038:F:Selme:DIDI:21038@gmail.mr:TD1:TP1:3
+21040:F:Lekhssara:SALEM:21040@gmail.mr:TD3:TP3:10
+21041:M:Mohamed:MAHAN:21041@gmail.mr:TD4:TP4:16
+21044:M:Mohamed:DEHANE:21044@gmail.mr:TD4:TP4:14
+21045:M:El Jeyed:HADI :21045@gmail.mr:TD4:TP4:14
+21046:F:Teghrou:KERIM:21046@gmail.mr:TD2:TP2:8
+21047:M:Sid'Ahmed:EDAH:21047@gmail.mr:TD1:TP1:3
+21048:F:Mariem:LAMIN:21048@gmail.mr:TD3:TP3:9
+21049:F:Zeinebou:MOHAMED :21049@gmail.mr:TD3:TP3:12
+21050:M:Taleb :tourad:21050@gmail.mr:TD4:TP4:15
+21051:M:Mohamed:NENOU:21051@gmail.mr:TD1:TP1:4
+21052:F:Souleiman:SAMBA:21052@gmail.mr:TD4:TP4:14
+21053:M:Moussa:AHMED :21053@gmail.mr:TD1:TP1:4
+21054:M:Mohamed:AHMEDOU:21054@gmail.mr:TD4:TP4:13
+21057:M:Idoumou:ABDEOU:21057@esp.mr:TD4:TP4:16
+21058:M:Ahmed Babou:MOHAMED HABIB:21058@gmail.mr:TD2:TP2:6
+21064:M:mohamed:HEMREN:21064@gmail.mr:TD4:TP4:15
+21067:M:Mohamed:HEIMIDA:21067@gmail.mr:TD4:TP4:13
+21070:M:Mohamed:BOUKHARY:21070@esp.mr:TD3:TP3:9
+21074:F:Naji:MOHAMEDOU:21074@gmail.mr:TD1:TP1:2
+21075:M:Lehssen: AMAR:21075@gmail.mr:TD3:TP3:9
+21077:F:Salem:Dah:21077@gmail.mr:TD2:TP2:6
+21082:M:Mohamed :El kory:21082@gmail.mr:TD3:TP3:12
+21085:M:Aziz:Ghali:21085@gmail.mr:TD1:TP1:3
+21097:F:Meymoune:Souleiman:21097@gmail.mr:TD1:TP1:1
+21114:M:Ahmed :MBARECK:21114@gmail.mr:TD3:TP3:9
+21160:F:Emama:MOHAMED MOCTAR:21160@gmail.mr:TD4:TP4:15
+21180:M:Ely:MOULAYE BRAHIM:21180@gmail.mr:TD2:TP2:8
+21196:F:Fatma:SIDIYA:21196@gmail.mr:TD2:TP2:5
+21199:F:Zeinebou:SALECK:21199@esp.mr:TD1:TP1:4
+21200:M:Abdoulaye:DIA:21200@esp.mr:TD4:TP4:16
+21203:M:Amadou:LAM:21203@esp.mr:TD2:TP2:6
+21218:M:Ahmed mahmoud:AWARA:21218@esp.mr:TD1:TP1:2
+21221:M:Mohamed El moctar Mohamed lemine:BILLI:21221@esp.mr:TD3:TP3:12
+21224:F:Aichettou:HABALLA:21224@esp.mr:TD2:TP2:7
+21234:M:Racine:LY:21234@esp.mr:TD1:TP1:1

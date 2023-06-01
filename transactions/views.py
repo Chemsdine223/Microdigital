@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from users.models import  CustomUser
+from users.models import  BankClient, CustomUser
 from users.serializers import BankLoans
 from .models import Bank, Loan
 from .serializers import BankSerializer, LoanSerializer, LoanCrudSerializer
@@ -29,7 +29,7 @@ class CreateLoanView(generics.CreateAPIView):
             return Response({'error': 'You already have an active loan.'}, status=400)
         else:
             print(user_loans)
-            client = CustomUser.objects.get(id = request.data['client'])
+            client = BankClient.objects.get(id = request.data['client'])
             loan_amount = request.data['loan_amount']
             interest_rate = request.data['interest_rate']
             loan_start_date = request.data['loan_start_date']

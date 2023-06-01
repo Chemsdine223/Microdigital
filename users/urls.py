@@ -1,5 +1,5 @@
 from django.urls import path
-from users.views import AdminLoginView, AuthenticatedUserData, AuthenticatedUserDataa, ClientLoginView, ClientRegisterView, PushNotificationView
+from users.views import AdminLoginView, AuthenticatedUserData, AuthenticatedUserDataa, BankClientUpdateView, ClientLoginView, ClientRegisterView, PushNotificationView
 
 app_name = "users"
 
@@ -11,7 +11,9 @@ urlpatterns = [
     path('login/', ClientLoginView.as_view(), name='login-client'),
     path('loginAdmin/', AdminLoginView.as_view(), name='login-admin'),
     path('getuser/<int:id>/', AuthenticatedUserData.as_view(), name='user-data'),
+    path('upload/<int:id>/', BankClientUpdateView.as_view(), name='image'),
     path('me/', AuthenticatedUserDataa.as_view(), name='user-data'),
+    
 
 
 ]

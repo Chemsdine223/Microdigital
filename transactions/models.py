@@ -19,7 +19,7 @@ class Loan(models.Model):
     account_number = models.IntegerField(blank=True, null=True, unique=True)
     loan_amount = models.FloatField(max_length=255, default=0)
     interest_rate = models.FloatField(max_length=255)
-    reduction_rate = models.FloatField(max_length=255)
+    reduction_rate = models.FloatField(max_length=255, default=0)
     loan_start_date = models.DateField(default=datetime.now)
     loan_end_date = models.DateField()
     paid_amount = models.FloatField(default= 0)
