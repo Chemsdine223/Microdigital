@@ -127,7 +127,7 @@ class ClientLoginView(ObtainAuthToken):
     def post(self, request,*args, **kwargs):
         phone = request.data.get('phone')
         password = request.data.get('password')
-        client = CustomUser.objects.get(phone=phone)
+        client = BankClient.objects.get(phone=phone)
         if client is None:
             raise AuthenticationFailed('check password')
         if client.check_password(password):
@@ -138,8 +138,8 @@ class ClientLoginView(ObtainAuthToken):
                 'prenom':client.prenom,
                 'telephone':client.phone,
                 'nni':client.nni,
-                # 'balance':client.balance,
-                # 'account_number':client.account_number,
+                'balance':client.balance,
+                'account_number':client.account_number,
                 'refresh':str(refresh),
                 'access':str(refresh.access_token)
             },status=Response.status_code)
