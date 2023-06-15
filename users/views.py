@@ -38,8 +38,6 @@ class BankClientUpdateView(APIView):
 
         if 'image_url' in data:
             client.image = data['image_url']
-
-        # Save the updated instance
         client.save()
 
         return Response({'message': 'BankClient updated successfully.'}, status=200)
