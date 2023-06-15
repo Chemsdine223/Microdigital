@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from transactions.models import Loan
-from users.models import  CustomUser
+from users.models import  CustomUser, BankClient
 from django.contrib.auth.password_validation import validate_password
 # from rest_framework.response import Response
 
@@ -76,7 +76,7 @@ class ClientRegisterSerializer(serializers.ModelSerializer):
     )
     
     class Meta:
-        model = CustomUser
+        model = BankClient
         fields = (
             "nom",
             "prenom",
@@ -97,7 +97,7 @@ class ClientRegisterSerializer(serializers.ModelSerializer):
         return attrs
     
     def create(self, validated_data):
-        user = CustomUser.objects.create_user(
+        user = BankClient.objects.create_user(
             phone= validated_data["phone"],
             nni= validated_data["nni"],
             nom= validated_data["nom"],

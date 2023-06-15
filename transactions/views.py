@@ -77,6 +77,8 @@ class LoanView(APIView):
             return Response(serializer.data, status=200)
         else:
             return Response({"error": "No loans found for the banks."}, status=400)
+
+
 @api_view(['GET'])
 def getBanks(request):
     if request.method == 'GET':
