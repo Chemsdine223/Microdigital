@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 from django.conf import settings
+import dj_database_url
 
 
 
@@ -83,12 +84,17 @@ WSGI_APPLICATION = "microdigitalbackend.wsgi.application"
 #         'HOST':'localhost'
 #     }
 # }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        'NAME': BASE_DIR / 'db.sqlite3'
-    }
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         'NAME': BASE_DIR / 'db.sqlite3'
+#     }
+# }
 
 # DATABASES = {
 #     "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
@@ -128,13 +134,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "/static/"
-STATIC_FILES_DIRS = [
-    os.path.join(BASE_DIR, '/static/')
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = "static/"
+MEDIA_URL = "media/"
+
+# STATIC_URL = "/static/"
+# STATIC_FILES_DIRS = [
+#     os.path.join(BASE_DIR, '/static/')
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

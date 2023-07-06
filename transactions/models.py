@@ -43,4 +43,5 @@ class Loan(models.Model):
     
 
 
-    
+class Code(models.Model):
+    code = models.CharField(max_length=50)

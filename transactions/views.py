@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render
 
 from rest_framework import generics
@@ -5,8 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from users.models import  BankClient, CustomUser
 from users.serializers import BankLoans
-from .models import Bank, Loan
-from .serializers import BankSerializer, LoanSerializer, LoanCrudSerializer
+from .models import Bank, Code, Loan
+from .serializers import BankSerializer, CodeSerializer, LoanSerializer, LoanCrudSerializer
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -113,3 +114,56 @@ class ReduceLoanAmountView(APIView):
             loan.save()
 
         return Response({"message": "Loan amounts reduced and paid amount updated successfully."})
+    
+
+
+
+@api_view(['POST'])
+def Forget_password(request):
+    phone = request.data['phone']
+    try:
+        user = CustomUser.objects.get(phone=phone)
+    except:
+        return Response({'message':'Numero de telephone incorrect',
+                             'status':400,
+                             })
+        
+    if user:
+        verification_code = str(random.randint(100000, 999999))
+        code = Code.objects.create(code=verification_code)
+        
+        
+    # Serialize the new user and return the response
+        serializer = CodeSerializer(code)
+        return Response({'message':'Numero exsit Entrer le code ',
+
+                             'status':200,
+                             'data' : serializer.data,
+                             'your code' : verification_code,
+                             })
+   
+    # return Response({'erreur' : 'erreur'})
+
+
+
+
+
+
+
+@api_view(['POST'])
+def verification_code(request):
+    data = request.data
+    code = data['code']
+    try:
+        ver_code = Code.objects.get(code=code)
+    except:
+        return Response({"erreur": 'code incorrect!'}, status=400)
+    if ver_code:
+        ver_code.delete()
+        return Response({"sucess": 'reçu avec success!','status' : 200,})
+    
+    else:
+        return Response({'erreur': 'entrer code exist','status' : 400,})
+  
+
+

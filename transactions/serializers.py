@@ -1,10 +1,16 @@
 from rest_framework import serializers
-from .models import Bank, Loan
+from .models import Bank, Loan, Code
 from users.serializers import UserSerializer
 
 class BankSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bank
+        fields = '__all__'
+        
+        
+class CodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Code
         fields = '__all__'
         
 class LoanSerializer(serializers.ModelSerializer):
