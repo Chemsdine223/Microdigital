@@ -4,18 +4,18 @@ gunicorn
 djangorestframework
 djangorestframework-simplejwt
 
-certifi==2022.9.24
-crispy-bootstrap5==0.7
+# certifi==2022.9.24
+# crispy-bootstrap5==0.7
 dj-database-url==1.3.0
 Django==4.1.7
-django-crispy-forms==2.0
+# django-crispy-forms==2.0
 django-rest-framework==0.1.0
 djangorestframework==3.14.0
 djangorestframework-jwt==1.11.0
 djangorestframework-simplejwt==5.2.2
 gunicorn==20.1.0
-numpy==1.24.0
-pandas==1.5.2
+# numpy==1.24.0
+# pandas==1.5.2
 psycopg2==2.9.5
 psycopg2-binary==2.9.5
 PyJWT==1.7.1
@@ -68,19 +68,19 @@ gcloud==0.17.0
 gevent==22.10.2
 gitdb==4.0.10
 GitPython==3.1.31
-google-api-core==2.11.0
-google-api-python-client==2.85.0
-google-auth==2.17.3
-google-auth-httplib2==0.1.0
-google-auth-oauthlib==1.0.0
-google-cloud-core==2.3.2
-google-cloud-firestore==2.11.0
-google-cloud-storage==2.8.0
-google-crc32c==1.5.0
-google-pasta==0.2.0
-google-resumable-media==2.4.1
-googleapis-common-protos==1.59.0
-gotrue==1.0.1
+# google-api-core==2.11.0
+# google-api-python-client==2.85.0
+# google-auth==2.17.3
+# google-auth-httplib2==0.1.0
+# google-auth-oauthlib==1.0.0
+# google-cloud-core==2.3.2
+# google-cloud-firestore==2.11.0
+# google-cloud-storage==2.8.0
+# google-crc32c==1.5.0
+# google-pasta==0.2.0
+# google-resumable-media==2.4.1
+# googleapis-common-protos==1.59.0
+# gotrue==1.0.1
 greenlet==2.0.2
 grpcio==1.54.0
 grpcio-status==1.53.0
@@ -108,10 +108,10 @@ matplotlib==3.7.1
 ml-dtypes==0.1.0
 more-itertools==9.1.0
 msgpack==1.0.5
-nltk==3.8.1
-numpy==1.23.5
-oauth2client==3.0.0
-oauthlib==3.2.2
+# nltk==3.8.1
+# numpy==1.23.5
+# oauth2client==3.0.0
+# oauthlib==3.2.2
 opt-einsum==3.3.0
 packaging==23.1
 pandas==1.5.2
@@ -174,7 +174,7 @@ tensorflow==2.12.0
 tensorflow-estimator==2.12.0
 tensorflow-io-gcs-filesystem==0.32.0
 termcolor==2.2.0
-tflearn==0.5.0
+# tflearn==0.5.0
 tldextract==3.4.4
 toml==0.10.2
 tomlkit==0.11.7
