@@ -10,11 +10,8 @@ class Bank(models.Model):
     def __str__(self):
         return str(self.nom)
     
-    
-    
-
 class Loan(models.Model):
-    client = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank = True)
+    client = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     bank = models.ForeignKey(Bank, on_delete=models.CASCADE, blank = True)
     account_number = models.IntegerField(blank=True, null=True, unique=True)
     loan_amount = models.FloatField(max_length=255, default=0)

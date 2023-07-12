@@ -11,9 +11,11 @@ from rest_framework import permissions
 from rest_framework.exceptions import AuthenticationFailed 
 from rest_framework.response import Response
 from rest_framework.decorators import *
+from django.contrib.auth import authenticate
+from rest_framework import status
 
 from users.models import BankClient, CustomUser
-from users.serializers import ClientRegisterSerializer, ClientRegisterSerializer
+from users.serializers import ClientRegisterSerializer, ClientRegisterSerializer, PasswordChangeSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
@@ -187,5 +189,29 @@ class AdminLoginView(ObtainAuthToken):
                                 'message': 'Check your credentials'
                                 }, status=401)
         else:
-            raise AuthenticationFailed('Get out !')
+            return Response({
+                                'message': 'you are not admin'
+                                }, status=402)
 
+
+
+@permission_classes((IsAuthenticated,))    
+@api_view(['post'])
+def change_password(request):
+    
+    if request.method == 'POST':
+        serializer = PasswordChangeSerializer(data=request.data)
+        if serializer.is_valid():
+            current_password = serializer.validated_data['current_password']
+            new_password = serializer.validated_data['new_password']
+        # Authenticate the user
+            user = authenticate(phone=request.user.phone, password=current_password)
+            if user is not None:
+                # User authentication successful, change the password
+                user.set_password(new_password)
+                user.save()
+                return Response({'message': 'Password changed successfully.'})
+            else:
+                return Response({'message': 'Invalid current password.'},  status=status.HTTP_400_BAD_REQUEST)
+
+    return Response({'message': 'Invalid request method.'})

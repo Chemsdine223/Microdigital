@@ -55,7 +55,7 @@ class LoanListView(generics.ListAPIView):
 
     def get(self,request,id):
         user = CustomUser.objects.get(id=id)
-        query =Loan.objects.filter(client=user.id).first()
+        query =Loan.objects.filter(client=user.id)
         # serializer=LoanSerializer(query,many=True)
         return  Response({
         "id": user.id,
@@ -67,7 +67,8 @@ class LoanListView(generics.ListAPIView):
         "loan_status": query.loan_status,
         "client": query.client.id,
         "bank": query.bank.nom,
-        },status=200)
+        },
+        status=200)
     
 class LoanView(APIView):
     def get(self,request,id):
@@ -84,7 +85,7 @@ class LoanView(APIView):
 def getBanks(request):
     if request.method == 'GET':
         query = Bank.objects.all()
-        serializer = BankSerializer(query, many = True)
+        serializer = BankSerializer(query,many=True)
         return Response(
             serializer.data
         ,status=200)

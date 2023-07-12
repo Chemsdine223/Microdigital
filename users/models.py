@@ -46,7 +46,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 class responsable(CustomUser):
     def save(self, *args, **kwargs):
-        if self.password:
+        if not self.pk:  # Only hash the password for newly created users
             self.password = make_password(self.password)
         super().save(*args, **kwargs)
 
@@ -59,7 +59,7 @@ class BankClient(CustomUser):
     image =  models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if not self.pk:
+        if not self.pk:  # Only hash the password for newly created users
             self.password = make_password(self.password)
         super().save(*args, **kwargs)
 
